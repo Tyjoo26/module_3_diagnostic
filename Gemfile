@@ -11,12 +11,13 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'faraday'
 gem 'figaro'
+gem "factory_bot_rails", "~> 4.0"
 
 group :development, :test do
   gem 'byebug'
   gem 'rspec-rails'
   gem 'pry'
-  
+
 end
 
 group :development do
