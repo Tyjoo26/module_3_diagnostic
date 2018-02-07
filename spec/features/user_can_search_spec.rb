@@ -9,14 +9,15 @@ feature "User can visit root page" do
     within(".navbar") do
       expect(page).to have_content("AltFuelFinder")
       expect(page).to have_selector("input[value='Search by zip...']")
-
-      fill_in "input[value='Search by zip...']", with: "80203"
-
-      click_button "Locate"
     end
 
+
+    fill_in "q", with: "80203"
+
+
+
     # syntax in eq below needs to be fixed
-    expect(current_path).to eq(search_stations_path)
+    expect(current_path).to eq(search_path)
 
 
     expect(page).to have_content(stations_2.first.name)
