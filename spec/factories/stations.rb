@@ -3,7 +3,7 @@ FactoryBot.define do
     name "MyString"
     address "MyString"
     fuel_type "MyString"
-    distance "9.99"
+    distance "5.99"
     access_times "MyString"
   end
 end
