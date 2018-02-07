@@ -1,7 +1,10 @@
 
 feature "User can visit root page" do
   scenario "and search by zipcode" do
-    station_1 = Station.create(name: )
+    stations = create_list(:station)
+    stations_2 = create_list(:station, fuel_type: "Electric")
+    stations_3 = create_list(:station, fuel_type: "Propane")
+
     visit "/"
     within(".navbar") do
       expect(page).to have_content("AltFuelFinder")
@@ -9,6 +12,17 @@ feature "User can visit root page" do
     end
 
     expect(current_path).to eq(search_stations_path)
-    expect(page).to have_content("Station")
+    
+    expect(page).to have_content(stations_2.first.name)
+    expect(page).to have_content(stations_2.first.address)
+    expect(page).to have_content(stations_2.first.fuel_type)
+    expect(page).to have_content(stations_2.first.distance)
+    expect(page).to have_content(stations_2.first.access_times)
+
+    expect(page).to have_content(stations_3.first.name)
+    expect(page).to have_content(stations_3.first.address)
+    expect(page).to have_content(stations_3.first.fuel_type)
+    expect(page).to have_content(stations_3.first.distance)
+    expect(page).to have_content(stations_3.first.access_times)
   end
 end
