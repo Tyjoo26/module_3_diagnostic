@@ -1,6 +1,7 @@
 
 feature "User can visit root page" do
   scenario "and search by zipcode" do
+    station_1 = Station.create(name: )
     visit "/"
     within(".navbar") do
       expect(page).to have_content("AltFuelFinder")
