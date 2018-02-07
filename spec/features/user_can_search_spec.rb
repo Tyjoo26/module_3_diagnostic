@@ -1,18 +1,24 @@
 
 feature "User can visit root page" do
   scenario "and search by zipcode" do
-    stations = create_list(:station)
-    stations_2 = create_list(:station, fuel_type: "Electric")
-    stations_3 = create_list(:station, fuel_type: "Propane")
+    stations = create_list(:station,5)
+    stations_2 = create_list(:station,5,  fuel_type: "Electric")
+    stations_3 = create_list(:station,5, fuel_type: "Propane")
 
     visit "/"
     within(".navbar") do
       expect(page).to have_content("AltFuelFinder")
       expect(page).to have_selector("input[value='Search by zip...']")
+
+      fill_in "input[value='Search by zip...']", with: "80203"
+
+      click_button "Locate"
     end
 
+    # syntax in eq below needs to be fixed
     expect(current_path).to eq(search_stations_path)
-    
+
+
     expect(page).to have_content(stations_2.first.name)
     expect(page).to have_content(stations_2.first.address)
     expect(page).to have_content(stations_2.first.fuel_type)
